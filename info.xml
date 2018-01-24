@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<extension key="nl.onvergetelijk.vog" type="module">
+  <file>vog</file>
+  <name>Onvergetelijke Zomerkampen - VOG</name>
+  <description>Deze extensie voert enkele administratieve taken uit rondom de aanvraag van VOG's voor kampleiders</description>
+  <license>GNU AGPL</license>
+  <maintainer>
+    <author>Richard van Oosterhout</author>
+    <email>info@onvergetelijk.nl</email>
+  </maintainer>
+  <releaseDate>2017-11-01</releaseDate>
+  <version>0.1</version>
+  <develStage>alpha</develStage>
+  <compatibility>
+    <ver>4.7</ver>
+  </compatibility>
+  <comments>This module extension is to Stichting Onvergetelijke Zomerkampen</comments>
+</extension>
