@@ -39,6 +39,7 @@ function vog_civicrm_custom( $op, $groupID, $entityID, &$params ) {
     watchdog('php', '<pre>--- START EXTENSION VOG ---</pre>', NULL, WATCHDOG_DEBUG);
 	$tableName1	= "civicrm_value_part_leid_vog_140";			//	table name for the custom group (each set of custom fields has a corresponding table in the database)
 	$tableName2	= "civicrm_value_intake_181";				//	table name for the custom group (each set of custom fields has a corresponding table in the database)
+	$tableName3	= "civicrm_value_part_leid_190";			//	table name for the custom group (each set of custom fields has a corresponding table in the database)
 	
 
     $sql1 = "SELECT vp.datum_laatste_vog_603 AS voglaatste, vp.kenmerk_vog_602 AS vogkenmerk, vp.scan_foto_van_je_vog_604 AS vogscan, pt.contact_id AS contactid, pt.event_id AS eventid FROM $tableName1 AS vp INNER JOIN `civicrm_participant` AS pt ON vp.entity_id = pt.id WHERE vp.entity_id = '$entityID'";
@@ -46,7 +47,7 @@ function vog_civicrm_custom( $op, $groupID, $entityID, &$params ) {
     $dao1 = CRM_Core_DAO::executeQuery( $sql1 );
     #watchdog('php', '<pre>dao1:'. print_r($dao1, TRUE) .'</pre>', NULL, WATCHDOG_DEBUG);
 
-    $sql2 = "SELECT lp.functie_568 AS kampfunctie, lp.voor_het_eerst_649 AS eerstekeer, vp.entity_id FROM $tableName1 AS vp INNER JOIN `civicrm_value_leid_part_125` AS lp ON vp.entity_id = lp.entity_id WHERE vp.entity_id = '$entityID'";
+    $sql2 = "SELECT lp.functie_568 AS kampfunctie, lp.voor_het_eerst_649 AS eerstekeer, vp.entity_id FROM $tableName1 AS vp INNER JOIN $tableName3 AS lp ON vp.entity_id = lp.entity_id WHERE vp.entity_id = '$entityID'";
     watchdog('php', '<pre>sql2:'. print_r($sql2, TRUE) .'</pre>', NULL, WATCHDOG_DEBUG);
     $dao2 = CRM_Core_DAO::executeQuery( $sql2 );
     #watchdog('php', '<pre>dao2:'. print_r($dao2, TRUE) .'</pre>', NULL, WATCHDOG_DEBUG);
@@ -68,7 +69,7 @@ function vog_civicrm_custom( $op, $groupID, $entityID, &$params ) {
     $dao3 = CRM_Core_DAO::executeQuery( $sql3 );
     #watchdog('php', '<pre>dao3:'. print_r($dao3, TRUE) .'</pre>', NULL, WATCHDOG_DEBUG);
 
-    $sql4 = "SELECT datum_meest_recente_vog_56 AS vogrecent, kenmerk_vog_68 AS kenmerkrecent FROM `civicrm_value_intake_181` WHERE entity_id = '$contactid'";
+    $sql4 = "SELECT datum_meest_recente_vog_56 AS vogrecent, kenmerk_vog_68 AS kenmerkrecent FROM $tableName2 WHERE entity_id = '$contactid'";
     watchdog('php', '<pre>sql4:'. print_r($sql4, TRUE) .'</pre>', NULL, WATCHDOG_DEBUG);
     $dao4 = CRM_Core_DAO::executeQuery( $sql4 );
     #watchdog('php', '<pre>dao1:'. print_r($dao4, TRUE) .'</pre>', NULL, WATCHDOG_DEBUG);
